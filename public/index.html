@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Letter SignUp App</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div id="msg-container">
+            <h1>NewsLetter SignUp</h1>
+            <!-- <h3>Enter your info to get our awesome monthly news letters</h3> -->
+        </div>
+        <div id="form-container">
+            <form action="/signup" method="POST" > 
+                <p id="error-msg"></p>
+                <input type="text" id="firstname" placeholder="First Name" name="firstname">
+                <input type="text" id="lastname" placeholder="Last Name" name="lastname">
+                <input type="email" id="email" placeholder="Email" name="email" required>
+                <input type="submit" id="submit" value="SignUp">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const submitBtn = document.getElementById("submit");
+        const errorMsg = document.getElementById("error-msg");
+        
+
+        submitBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            errorMsg.innerText = "";
+
+            const firstname = this.firstname.value;
+            const lastname = this.lastname.value;
+            const email = this.email.value;
+            if(!firstname || !lastname || !email) {
+                errorMsg.innerText = "Please make sure to fill all the fields";
+            }
+
+            else {
+                const formData = {
+                    firstname,
+                    lastname,
+                    email
+                }
+                const fetchdata = {
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: {"Content-Type" : "application/json"}
+                }
+
+                fetch("/signup", fetchdata)
+                .then(res => {
+                    if(res.ok) {
+                        location.assign("/success.html")
+                    }
+                    else {
+                        location.assign("/fail.html")
+                    }
+                })
+            }
+            this.firstname.value = "";
+            this.lastname.value = "";
+            this.email.value = "";
+        })
+    </script>
+</body>
+</html>

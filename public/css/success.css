@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: darkcyan;
+    outline: none;
+    color: wheat;
+    text-align: center;
+    position: relative;
+}
+
+#container {
+    position: relative;
+    top: 200px;
+    width: 700px;
+    height: 700px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+#back-btn {
+    width: 200px;
+    height: 35px;
+    color: white;
+    background: transparent;
+    border: 1px solid gold;
+    font-size: 1.3rem;
+    margin-top: .7rem;
+    margin-left: 2rem;
+    text-decoration: none;
+    padding: .2rem 2rem;
+}
